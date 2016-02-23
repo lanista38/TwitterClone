@@ -68,11 +68,27 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jtx-6f-rcd">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="MdG-J2-AXT">
+                                        <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MdG-J2-AXT" id="00x-U7-IbN">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yaa-Fb-BCT"/>
+                    <navigationItem key="navigationItem" id="yaa-Fb-BCT">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="f08-ZW-Wt4">
+                            <connections>
+                                <action selector="onLogOut:" destination="SXO-pF-clV" id="1x7-0h-5lx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YiP-pW-1Fi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -81,7 +97,7 @@
         <!--Navigation Controller-->
         <scene sceneID="uB5-Yg-PG9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WfE-UE-GZm" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="WfE-UE-GZm" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xd6-Xd-hMx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

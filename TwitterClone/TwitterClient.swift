@@ -11,6 +11,8 @@ import BDBOAuth1Manager
 
 class TwitterClient: BDBOAuth1SessionManager {
     
+    static let userDidLogOutNotification = "UserdidLogOut"
+    
     static let sharedInstance = TwitterClient(baseURL: NSURL(string: "https://api.twitter.com")!, consumerKey: "7KSDLfx1lzaNR8MoVHdHCOWUv", consumerSecret: "ySx0MQ6pAZG5PkQardgujFCRSkM5YLKg9RXdjJlrpFZbWNkyni")
     
     var loginSuccess: (() -> ())?
@@ -34,13 +36,25 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
     
+    func logout() {
+        User.currentUser = nil
+        deauthorize()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(User.userDidLogOutNotification, object: nil)
+    }
+    
     func handleOpenUrl(url: NSURL)
     {
         let requestToken = BDBOAuth1Credential(queryString: url.query)
         
         fetchAccessTokenWithPath("oauth/access_token", method: "POST", requestToken: requestToken!, success: { (accessToken: BDBOAuth1Credential!) -> Void in
-            self.loginSuccess?()
             
+            self.currentAccount({ (user: User) -> () in
+                User.currentUser = user
+                self.loginSuccess?()
+                }, failure: { (error: NSError) -> () in
+                    self.loginFailure?(error)
+            })
             
             }) {(error: NSError!) -> Void in
                 print("error: \(error.localizedDescription)")
@@ -62,16 +76,20 @@ class TwitterClient: BDBOAuth1SessionManager {
         
     }
     
-    func currentAccount() {
+    func currentAccount(success: (User) -> (), failure: (NSError) -> ()) {
         
         
         GET("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (task:NSURLSessionDataTask, response:AnyObject?) -> Void in
-            print("account: \(response)")
-            let user = response as? NSDictionary
+           
+            let userDictionary = response as! NSDictionary
             
-            print("name:\(user!["name"])")
+            let user = User(dictionary: userDictionary)
+            
+            success(user)
+            
             
             }, failure: { (task: NSURLSessionDataTask?, error: NSError) -> Void in
+                failure(error)
                 
         })
 
