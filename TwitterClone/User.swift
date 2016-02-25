@@ -9,7 +9,7 @@
 import UIKit
 
 
-let currentUserKey = "kCurrentUserKey"
+let currentUserKey = "CurrentUserKey"
 
 var _currentUser: User?
 
@@ -27,11 +27,16 @@ class User: NSObject {
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageUrl = dictionary["profile_image_url"] as? String
+        profileImageUrl = dictionary["profile_image_url_https"] as? String
+        
+        
+        
         tagline = dictionary["description"] as? String
     }
     
   
+    
+    
     class var currentUser: User? {
         get {
         if _currentUser == nil {
