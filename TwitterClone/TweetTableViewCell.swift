@@ -16,7 +16,10 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     
+    @IBOutlet weak var favoritesCountLabel: UILabel!
+    
     var dateString: String?
+    var favoriteStatus: Bool?
     var tweet: Tweet! {
         didSet {
             
@@ -25,20 +28,15 @@ class TweetTableViewCell: UITableViewCell {
             usernameLabel.text = "@\((tweet.user?.screenname)!)"
             
             dateString = Tweet.stringFromTimeInterval(tweet.readDate!)
-            
+           
             timeStampLabel.text = "\(dateString!)"
-            
+            favoritesCountLabel.text = tweet.favoritesCount 
             
             let imageUrl = tweet.user!.profileImageUrl
             
             profilePic.setImageWithURL((NSURL( string: imageUrl!)!))
-            
         }
-        
-
     }
-    
-    
     
    override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,4 +50,10 @@ class TweetTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func onFavorite(sender: AnyObject) {
+
+         favoriteStatus = tweet.favoriteStatus
+        TwitterClient.sharedInstance.favorites(tweet.tweetId!, isFavorited: favoriteStatus!)
+        favoritesCountLabel.reloadInputViews()
+    }
 }

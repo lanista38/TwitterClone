@@ -14,18 +14,20 @@ class Tweet: NSObject {
     var screenName: String?
     var text: NSString?
     var timestamp: NSDate?
+    var tweetId: String?
     var retweetCount: Int = 0
-    var favoritesCount: Int = 0
+    var favoritesCount: String?
     var readDate: NSTimeInterval?
-    
+    var favoriteStatus: Bool?
     init(dictionary: NSDictionary) {
         
         user = User(dictionary: (dictionary["user"] as? NSDictionary)!)
         screenName = dictionary["screenname"] as? String
         text = dictionary["text"] as? String
-        
+        tweetId = (dictionary["id_str"] as! String?)!
         retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
-        favoritesCount = (dictionary["favourites_count"] as? Int) ?? 0
+        favoriteStatus = dictionary["favorited"] as? Bool
+        favoritesCount = "\((dictionary["favorite_count"])!)"
         
         let timestampString = dictionary["created_at"] as? String
         
@@ -56,7 +58,7 @@ class Tweet: NSObject {
         
         let ti = NSInteger(interval)
         
-        //let ms = Int((interval % 1) * 1000)
+        
         
         let seconds = ti % 60
         let minutes = (ti / 60) % 60
