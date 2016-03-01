@@ -18,6 +18,7 @@
 		0C60C9221C7AA0F700A7B400 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C60C9201C7AA0F700A7B400 /* LaunchScreen.storyboard */; };
 		0C665FC71C84DBBA00665102 /* default_profile_6_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C665FC61C84DBBA00665102 /* default_profile_6_normal.png */; };
 		0C665FCA1C84DCC400665102 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C665FC91C84DCC400665102 /* ProfileViewController.swift */; };
+		0C665FCC1C8580A000665102 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C665FCB1C8580A000665102 /* PostViewController.swift */; };
 		0C6C786B1C7FD6FE006A2463 /* retweet-action-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C6C786A1C7FD6FE006A2463 /* retweet-action-on.png */; };
 		0C6C786D1C7FD704006A2463 /* retweet-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C6C786C1C7FD704006A2463 /* retweet-action.png */; };
 		0C6C786F1C7FD70D006A2463 /* like-action.png in Resources */ = {isa = PBXBuildFile; fileRef = 0C6C786E1C7FD70D006A2463 /* like-action.png */; };
@@ -43,6 +44,7 @@
 		0C60C9231C7AA0F700A7B400 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C665FC61C84DBBA00665102 /* default_profile_6_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_profile_6_normal.png; path = ../../../Downloads/default_profile_6_normal.png; sourceTree = "<group>"; };
 		0C665FC91C84DCC400665102 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		0C665FCB1C8580A000665102 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		0C6C786A1C7FD6FE006A2463 /* retweet-action-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "retweet-action-on.png"; path = "../../../Downloads/retweet-action-on.png"; sourceTree = "<group>"; };
 		0C6C786C1C7FD704006A2463 /* retweet-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "retweet-action.png"; path = "../../../Downloads/retweet-action.png"; sourceTree = "<group>"; };
 		0C6C786E1C7FD70D006A2463 /* like-action.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "like-action.png"; path = "../../../Downloads/like-action.png"; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 		0C60C90B1C7AA0F600A7B400 = {
 			isa = PBXGroup;
 			children = (
+				0C665FCB1C8580A000665102 /* PostViewController.swift */,
 				0C665FC81C84DC7E00665102 /* Views */,
 				0C60C9161C7AA0F700A7B400 /* TwitterClone */,
 				0C60C9151C7AA0F600A7B400 /* Products */,
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C665FCC1C8580A000665102 /* PostViewController.swift in Sources */,
 				0C4B61691C7BE2C300DF36F6 /* User.swift in Sources */,
 				0C4B616C1C7BE34300DF36F6 /* Tweet.swift in Sources */,
 				0CA7E8421C7AAD2E00E96FE6 /* logInViewController.swift in Sources */,

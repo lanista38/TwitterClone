@@ -20,7 +20,9 @@ class User: NSObject {
     var profileImageUrl: String?
     var tagline: String?
     var dictionary: NSDictionary
-    
+    var numtweetsCount: String?
+    var numfollowerCount: Int?
+    var numfollowingCount: Int?
     
     init(dictionary: NSDictionary) {
         self.dictionary = dictionary
@@ -32,6 +34,10 @@ class User: NSObject {
         
         
         tagline = dictionary["description"] as? String
+        
+        numtweetsCount = "\((dictionary["statuses_count"])!)"
+        numfollowerCount = dictionary["followers_count"] as! Int?
+        numfollowingCount = dictionary["friends_count"] as! Int?
     }
     
   

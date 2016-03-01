@@ -42,20 +42,22 @@ class TweetsViewController: UIViewController , UITableViewDataSource, UITableVie
         
     }
     
-    /**Method for refreching
+   
     func refreshControlAction(refreshControl: UIRefreshControl) {
         //Connect to the API to have the last update
-        TwitterClient.sharedInstance.homeTimeLine({ ([Tweet]) -> () in
+        TwitterClient.sharedInstance.homeTimeLine({ (tweets: [Tweet]) -> () in
             self.tweets = tweets
-            self.TweetTableView.reloadData()
+            self.tweetTableView.reloadData()
+            }, failure: { (error:NSError) -> () in
+                print(error.localizedDescription)
             })
         
-        }
         
+    
         //update the collection data source
         refreshControl.endRefreshing()
      }
-   **/
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -83,15 +85,34 @@ class TweetsViewController: UIViewController , UITableViewDataSource, UITableVie
         TwitterClient.sharedInstance.logout()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+       override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-    }
-    */
+        
+        if segue.identifier == "postSegue" {
+            
+            let button = sender as! UIBarButtonItem
+           
+            let postController = segue.destinationViewController as! PostViewController
+            
+            
+        }
+        if segue.identifier == "profileSegue" {
+            let button = sender as! UIButton
+            let buttonFrame = button.convertRect(button.bounds, toView: self.tweetTableView)
+            if let indexPath = self.tweetTableView.indexPathForRowAtPoint(buttonFrame.origin) {
+                let profileController = segue.destinationViewController as! ProfileViewController
+                
+               let selectedRow = indexPath.row as NSInteger
+                
+                profileController.tweets = tweets
+                
+                profileController.index = selectedRow
+                
+                tweetTableView.deselectRowAtIndexPath(indexPath, animated: true)
+            }
+        }    }
+    
 
 }
 

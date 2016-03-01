@@ -77,6 +77,21 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
         
     }
+    func userTimeline(screenname: String, completion: (tweet: [Tweet]?, error: NSError?)-> ()) {
+        GET("1.1/statuses/user_timeline.json?screen_name=\(screenname)", parameters: nil,
+            success: { (operation: NSURLSessionDataTask?, response: AnyObject?) -> Void in
+                var tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
+                completion(tweet: tweets, error: nil)
+            },
+            
+            failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
+                print("Error retrieving info: \(error)")
+                
+                completion(tweet: nil, error: error)
+                
+        })
+        
+    }
     
     func currentAccount(success: (User) -> (), failure: (NSError) -> ()) {
         
