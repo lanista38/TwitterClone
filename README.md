@@ -6,7 +6,7 @@ Time spent: 15 hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
+- [x] Tweet Details Page: User can tap on a tweet to view it, with controls to retweet, favorite, and reply.
 - [x] Profile page:
    - [x] Contains the user header view
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
@@ -40,7 +40,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://giant.gfycat.com/ClearCautiousKinkajou.gif'  />
+<img src='https://fat.gfycat.com/BrilliantFixedAmphiuma.gif'  />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
