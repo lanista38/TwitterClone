@@ -123,27 +123,6 @@ class TwitterClient: BDBOAuth1SessionManager {
         
     }
     
-    func retweet(id: String) {
-        POST("1.1/statuses/retweet/\(id).json", parameters: nil,
-            success: {(operation: NSURLSessionDataTask!, response: AnyObject?) -> Void in
-                print ("rt")
-            }, failure: { (operation: NSURLSessionDataTask?, error: NSError!) -> Void in
-                print("RT error: \(error)")
-        })
-    }
-    
-    func reply(tweetId: String, tweetText: String) {
-        let escapedText = (tweetText.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding))!
-        print("1.1/statuses/update.json?status=\(escapedText)&in_reply_to_status_id=\(tweetId)")
-        POST("1.1/statuses/update.json?status=\(escapedText)&in_reply_to_status_id=\(tweetId)", parameters: nil,
-            success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
-                print("replied")
-            }, failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
-                print("Reply error:\(error)")
-        })
-        
-    }
-    
     func favorites(id: String, isFavorited: Bool)
     {
         

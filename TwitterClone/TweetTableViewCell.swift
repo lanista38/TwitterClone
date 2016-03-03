@@ -18,7 +18,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var likeHeartImageView: UIButton!
     
     @IBOutlet weak var favoritesCountLabel: UILabel!
-    
+    var favoritesCount: Int?
     var dateString: String?
     var favoriteStatus: Bool?
     var tweet: Tweet! {
@@ -33,8 +33,8 @@ class TweetTableViewCell: UITableViewCell {
             timeStampLabel.text = "\(dateString!)"
             favoritesCountLabel.text = tweet.favoritesCount 
             
-            let imageUrl = tweet.user!.profileImageUrl! + "_bigger"
-            
+            let imageUrl = tweet.user!.profileImageUrl!
+            favoritesCount = Int(tweet!.favoritesCount!)
             profilePic.setImageWithURL((NSURL( string: imageUrl)!))
         }
     }
@@ -54,8 +54,14 @@ class TweetTableViewCell: UITableViewCell {
     @IBAction func onFavorite(sender: AnyObject) {
 
          favoriteStatus = tweet.favoriteStatus
+       
+        if((favoriteStatus) == false)
+        {
+            likeHeartImageView.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
+            favoritesCount = favoritesCount! + 1
+        }
         TwitterClient.sharedInstance.favorites(tweet.tweetId!, isFavorited: favoriteStatus!)
         likeHeartImageView.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
-        favoritesCountLabel.reloadInputViews()
+        
     }
 }

@@ -91,9 +91,9 @@ class TweetsViewController: UIViewController , UITableViewDataSource, UITableVie
         
         if segue.identifier == "postSegue" {
             
-            let button = sender as! UIBarButtonItem
+            _ = sender as! UIBarButtonItem
            
-            let postController = segue.destinationViewController as! PostViewController
+            _ = segue.destinationViewController as! PostViewController
             
             
         }
@@ -110,10 +110,25 @@ class TweetsViewController: UIViewController , UITableViewDataSource, UITableVie
                 profileController.index = selectedRow
                 
                 tweetTableView.deselectRowAtIndexPath(indexPath, animated: true)
+                }
             }
-        }    }
     
-
+    if segue.identifier == "singletweetSegue" {
+        let cell = sender as! UITableViewCell
+            if let indexPath = tweetTableView.indexPathForCell(cell) {
+    
+                let singeTweetController = segue.destinationViewController as! SingleTweetViewController
+    
+                let selectedRow = indexPath.row as NSInteger
+    
+                singeTweetController.tweets = tweets
+                singeTweetController.index = selectedRow
+    
+                tweetTableView.deselectRowAtIndexPath(indexPath, animated: true)
+                }
+            }
+    
+    }
 }
 
 
