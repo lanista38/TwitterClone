@@ -40,13 +40,14 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://fat.gfycat.com/BrilliantFixedAmphiuma.gif'  />
+<img src='https://giant.gfycat.com/SparklingMiserableCero.gif'  />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+When the reply functionality was added i encountered some problems with recording the gif since my request limit was reached
+and the profile detail page was crashing for some reason.
 
 ## License
 
