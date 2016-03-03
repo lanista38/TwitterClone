@@ -13,13 +13,21 @@ class PostViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var postTextView: UITextView!
     @IBOutlet weak var postedLabel: UILabel!
+    
+    var tweetId: String = ""
+    var isReplying: Bool?
+    var replyTo: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         postTextView.delegate = self
+        postTextView.text = replyTo
+        
         
         let imageUrl = (User.currentUser?.profileImageUrl)!
         profilePicture.setImageWithURL(NSURL(string: imageUrl)!)
+        
         postTextView.becomeFirstResponder()
     }
 
@@ -39,10 +47,14 @@ class PostViewController: UIViewController, UITextViewDelegate {
     }
     */
     @IBAction func onPost(sender: AnyObject) {
-        
-        TwitterClient.sharedInstance.tweet(postTextView.text)
+        if(isReplying==true)
+        {
+            TwitterClient.sharedInstance.reply(tweetId, retweetText: postTextView.text)
+        }else{
+            TwitterClient.sharedInstance.tweet(postTextView.text)
+        }
         dismissViewControllerAnimated(true, completion: nil)
-        
     }
+    
 
 }

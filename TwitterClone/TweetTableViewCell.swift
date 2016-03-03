@@ -16,9 +16,12 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var tweetLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var likeHeartImageView: UIButton!
+    @IBOutlet weak var retweetCount: UILabel!
     
+    @IBOutlet weak var retweetImageView: UIButton!
     @IBOutlet weak var favoritesCountLabel: UILabel!
     var favoritesCount: Int?
+    var reTweetCount: Int?
     var dateString: String?
     var favoriteStatus: Bool?
     var tweet: Tweet! {
@@ -32,9 +35,13 @@ class TweetTableViewCell: UITableViewCell {
            
             timeStampLabel.text = "\(dateString!)"
             favoritesCountLabel.text = tweet.favoritesCount 
+            favoritesCount = Int(tweet!.favoritesCount!)
+            
+            reTweetCount = tweet!.retweetCount
+            retweetCount.text = String(tweet.retweetCount)
             
             let imageUrl = tweet.user!.profileImageUrl!
-            favoritesCount = Int(tweet!.favoritesCount!)
+            
             profilePic.setImageWithURL((NSURL( string: imageUrl)!))
         }
     }
@@ -51,6 +58,13 @@ class TweetTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    @IBAction func onRetweet(sender: AnyObject) {
+        reTweetCount = reTweetCount! + 1
+        retweetCount.text = String (reTweetCount!)
+        retweetImageView.setImage(UIImage(named: "retweet-action-on"), forState: UIControlState.Normal)
+        TwitterClient.sharedInstance.retweet(tweet.tweetId!)
+    }
     @IBAction func onFavorite(sender: AnyObject) {
 
          favoriteStatus = tweet.favoriteStatus
@@ -61,7 +75,7 @@ class TweetTableViewCell: UITableViewCell {
             favoritesCount = favoritesCount! + 1
         }
         TwitterClient.sharedInstance.favorites(tweet.tweetId!, isFavorited: favoriteStatus!)
-        likeHeartImageView.setImage(UIImage(named: "like-action-on"), forState: UIControlState.Normal)
+        
         
     }
 }

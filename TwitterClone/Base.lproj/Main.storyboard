@@ -119,21 +119,16 @@
                                                         <segue destination="wiB-RG-M8c" kind="push" identifier="profileSegue" id="gyc-SZ-4o8"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiY-p4-WJG">
-                                                    <rect key="frame" x="107" y="73" width="24" height="26"/>
+                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aiY-p4-WJG">
+                                                    <rect key="frame" x="107" y="74" width="24" height="26"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="Rxs-t0-iRK"/>
                                                         <constraint firstAttribute="height" constant="26" id="WnQ-qy-QH0"/>
                                                     </constraints>
                                                     <state key="normal" image="retweet-action.png"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMH-aw-HCM">
-                                                    <rect key="frame" x="68" y="75" width="24" height="26"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="26" id="0XJ-jv-g6E"/>
-                                                        <constraint firstAttribute="width" constant="24" id="aK2-Yf-d6O"/>
-                                                    </constraints>
-                                                    <state key="normal" image="reply-action_0.png"/>
+                                                    <connections>
+                                                        <action selector="onRetweet:" destination="MdG-J2-AXT" eventType="touchUpInside" id="0qO-hM-Fuv"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTJ-Ex-2pi">
                                                     <rect key="frame" x="156" y="76" width="23" height="26"/>
@@ -152,6 +147,17 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMH-aw-HCM">
+                                                    <rect key="frame" x="68" y="75" width="24" height="26"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="26" id="0XJ-jv-g6E"/>
+                                                        <constraint firstAttribute="width" constant="24" id="aK2-Yf-d6O"/>
+                                                    </constraints>
+                                                    <state key="normal" image="reply-action_0.png"/>
+                                                    <connections>
+                                                        <segue destination="iFB-J3-3M8" kind="push" identifier="replySegue" id="xnr-gD-bB6"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="E9y-57-RkH" firstAttribute="top" secondItem="00x-U7-IbN" secondAttribute="top" constant="8" id="28E-YU-Lug"/>
@@ -186,6 +192,8 @@
                                             <outlet property="likeHeartImageView" destination="lTJ-Ex-2pi" id="XJr-xp-0KH"/>
                                             <outlet property="nameLabel" destination="i5e-Mk-yDQ" id="Uju-4T-tdW"/>
                                             <outlet property="profilePic" destination="E9y-57-RkH" id="vtF-u5-Pme"/>
+                                            <outlet property="retweetCount" destination="Exx-XH-7vc" id="QHr-CF-g3f"/>
+                                            <outlet property="retweetImageView" destination="aiY-p4-WJG" id="3b2-ze-fr2"/>
                                             <outlet property="timeStampLabel" destination="VZM-dc-NWB" id="o9g-Sw-NJZ"/>
                                             <outlet property="tweetLabel" destination="Cov-JJ-b89" id="93W-Pg-cB2"/>
                                             <outlet property="usernameLabel" destination="WBi-BG-w92" id="f9w-X2-lXR"/>
@@ -379,7 +387,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TweetTableViewCell" rowHeight="110" id="gRU-aN-dCA" userLabel="TweetTableViewCell" customClass="TweetTableViewCell" customModule="TwitterClone" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="110"/>
+                                        <rect key="frame" x="0.0" y="92" width="320" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gRU-aN-dCA" id="5nk-kY-v1a">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="109"/>
@@ -666,4 +674,7 @@
         <image name="reply-action_0.png" width="65" height="72"/>
         <image name="retweet-action.png" width="75" height="72"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xnr-gD-bB6"/>
+    </inferredMetricsTieBreakers>
 </document>

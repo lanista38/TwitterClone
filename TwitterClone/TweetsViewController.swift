@@ -97,6 +97,22 @@ class TweetsViewController: UIViewController , UITableViewDataSource, UITableVie
             
             
         }
+        if segue.identifier == "replySegue" {
+            print("started replying")
+            let button = sender as! UIButton
+            let buttonFrame = button.convertRect(button.bounds, toView: self.tweetTableView)
+            if let indexPath = self.tweetTableView.indexPathForRowAtPoint(buttonFrame.origin) {
+                let postController = segue.destinationViewController as! PostViewController
+                let selectedRow = indexPath.row as NSInteger
+                let tweet = tweets![selectedRow]
+                
+                postController.isReplying = true
+                
+                postController.tweetId = tweet.tweetId!
+                postController.replyTo = "@\((tweet.user?.screenname!)!) " as String
+                
+            }
+        }
         if segue.identifier == "profileSegue" {
             let button = sender as! UIButton
             let buttonFrame = button.convertRect(button.bounds, toView: self.tweetTableView)
